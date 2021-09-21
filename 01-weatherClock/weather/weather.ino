@@ -43,7 +43,6 @@ void loop(){
 // 连接WiFi
 void connectWiFi(){
 
-  wifiMulti.addAP("MIX 2S", "00000000"); // 将需要连接的一系列WiFi ID和密码输入这里
   wifiMulti.addAP("TP-LINK_8CEE", "35S235S2."); // ESP8266-NodeMCU再启动后会扫描当前网络
   
   Serial.print("Connecting to ");              // 串口监视器输出网络连接信息
