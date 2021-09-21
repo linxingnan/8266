@@ -46,7 +46,6 @@ void connectWiFi(){
   wifiMulti.addAP("TEST513", "0123456789."); // ESP8266-NodeMCU再启动后会扫描当前网络
   
   Serial.print("Connecting to ");              // 串口监视器输出网络连接信息
- // Serial.print(ssid); Serial.println(" ...");  // 告知用户NodeMCU正在尝试WiFi连接
   
   int i = 0;                                   // 这一段程序语句用于检查WiFi是否连接成功
   while (wifiMulti.run() != WL_CONNECTED) {      // WiFi.status()函数的返回值是由NodeMCU的WiFi连接状态所决定的。 
@@ -95,11 +94,11 @@ void handleLocalTemp() {
   tft.setCursor(0, 30);
   tft.setTextColor(ST7735_RED);
   tft.setTextSize(1);
-  tft.println("城市:");
+  tft.println("City:");
   tft.setTextSize(2);
   tft.println(reqLocation);
   tft.setTextSize(1);
-  tft.println("温度:");
+  tft.println("Temp:");
   tft.setTextSize(2);
   tft.println(weatherNow.getDegree());
 }
