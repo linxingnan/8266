@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+	<title>太极创客-零基础入门学用物联网教程</title>
+</head>
+
+<body>
+<center>
+  
+<div id="demo">
+<h1>以下按钮可控制ESP8266开发板引脚</h1>
+ <br>
+  <button type="button" onclick="sendData(1)">点亮 LED</button>
+  <button type="button" onclick="sendData(0)">关闭 LED</button><br>
+</div>
+
+<div>
+    LED引脚状态 : <span id="LEDState">NA</span><br>
+</div>
+<br><br>
+<div id="demo">
+<h1>天气</h1>
+<div>
+  城市 : <span id="city">NA</span><br>
+  天气状况 : <span id="weatherText">NA</span><br>
+  当地温度 : <span id="localTEMPValue">0</span><br>
+  更新时间 : <span id="updateTime">NA</span><br>
+</div>
+
+
+<script>
+function sendData(led) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("LEDState").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "setLED?LEDstate="+led, true);
+  xhttp.send();
+}
+ 
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getData();
+}, 5000); //2000mSeconds update rate
+ 
+function getData() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var array = this.responseText.split(',');
+      document.getElementById("city").innerHTML = array[0];
+      document.getElementById("weatherText").innerHTML = array[1];
+      document.getElementById("localTEMPValue").innerHTML = array[2];
+      document.getElementById("updateTime").innerHTML = array[3];
+    }
+  };
+  xhttp.open("GET", "readLocalWeather", true);
+  xhttp.send();
+}
+</script>
+</center>
+</body>
+</html>
