@@ -43,10 +43,10 @@ void loop(){
 // 连接WiFi
 void connectWiFi(){
 
-  wifiMulti.addAP("TP-LINK_8CEE", "35S235S2."); // ESP8266-NodeMCU再启动后会扫描当前网络
+  wifiMulti.addAP("TEST513", "0123456789."); // ESP8266-NodeMCU再启动后会扫描当前网络
   
   Serial.print("Connecting to ");              // 串口监视器输出网络连接信息
-  Serial.print(ssid); Serial.println(" ...");  // 告知用户NodeMCU正在尝试WiFi连接
+ // Serial.print(ssid); Serial.println(" ...");  // 告知用户NodeMCU正在尝试WiFi连接
   
   int i = 0;                                   // 这一段程序语句用于检查WiFi是否连接成功
   while (wifiMulti.run() != WL_CONNECTED) {      // WiFi.status()函数的返回值是由NodeMCU的WiFi连接状态所决定的。 
